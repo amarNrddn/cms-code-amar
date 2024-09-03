@@ -2,12 +2,12 @@
 /** @type {import('sequelize-cli').Migration} */
 module.exports = {
   async up(queryInterface, Sequelize) {
-    await queryInterface.createTable('my_jobs', {
+    await queryInterface.createTable('Myjobs', {
       id: {
+        type: Sequelize.UUID,         
+        defaultValue: Sequelize.UUIDV4, 
         allowNull: false,
-        autoIncrement: true,
-        primaryKey: true,
-        type: Sequelize.INTEGER
+        primaryKey: true
       },
       job: {
         type: Sequelize.JSON
@@ -29,6 +29,6 @@ module.exports = {
     });
   },
   async down(queryInterface, Sequelize) {
-    await queryInterface.dropTable('my_jobs');
+    await queryInterface.dropTable('Myjobs');
   }
 };

@@ -1,9 +1,9 @@
 'use strict';
 const {
-  Model, UUID, UUIDV4
+  Model
 } = require('sequelize');
 module.exports = (sequelize, DataTypes) => {
-  class my_jobs extends Model {
+  class Myjobs extends Model {
     /**
      * Helper method for defining associations.
      * This method is not a part of Sequelize lifecycle.
@@ -13,18 +13,18 @@ module.exports = (sequelize, DataTypes) => {
       // define association here
     }
   }
-  my_jobs.init({
+  Myjobs.init({
     id: {
-      type: UUID,
-      defaultValue: UUIDV4,
-      primaryKey: true,
+      type: DataTypes.UUID,
+      defaultValue: DataTypes.UUIDV4,
+      primaryKey: true
     },
     job: DataTypes.JSON,
     city: DataTypes.STRING,
     about: DataTypes.STRING
   }, {
     sequelize,
-    modelName: 'my_jobs',
+    modelName: 'Myjobs',
   });
-  return my_jobs;
+  return Myjobs;
 };

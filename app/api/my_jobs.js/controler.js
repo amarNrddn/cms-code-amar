@@ -1,4 +1,4 @@
-const { createMyJobs, getAllMyJobs } = require('../../services/my_jobs')
+const { createMyJobs, getAllMyJobs, updateById, destroyByOne } = require('../../services/my_jobs')
 
 const create = async (req, res, next) => {
    try {
@@ -26,7 +26,35 @@ const getAll = async (req, res, next) => {
    }
 }
 
+const update = async (req, res, next) => {
+   try {
+      const result = await updateById(req)
+
+      res.status(201).json({
+         message: 'Succes',
+         data: result
+      })
+   } catch (error) {
+      next(error)
+   }
+}
+
+const destroyservices = async (req, res, next) => {
+   try {
+      const result = await destroyByOne(req)
+
+      res.status(200).json({
+         message: 'Succes',
+         data: result
+      })
+   } catch (error) {
+      next(error)
+   }
+}
+
 module.exports = {
    create,
-   getAll
+   getAll,
+   update,
+   destroyservices
 }
