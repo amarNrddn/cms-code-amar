@@ -39,22 +39,22 @@ const update = async (req, res, next) => {
    }
 }
 
-const destroyservices = async (req, res, next) => {
-   try {
-      const result = await destroyByOne(req)
+// const destroyservices = async (req, res, next) => {
+//    try {
+//       const result = await destroyByOne(req)
 
-      res.status(200).json({
-         message: 'Succes',
-         data: result
-      })
-   } catch (error) {
-      next(error)
-   }
-}
+//       res.status(200).json({
+//          message: 'Succes',
+//          data: result
+//       })
+//    } catch (error) {
+//       next(error)
+//    }
+// }
 
 module.exports = {
    create,
    getAll,
-   update,
-   destroyservices
+   // update,
+   // destroyservices
 }

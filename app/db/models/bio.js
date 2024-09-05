@@ -11,10 +11,9 @@ module.exports = (sequelize, DataTypes) => {
      */
     static associate(models) {
       // define association here
-      Bio.belongsTo(models.Jobs, {
+      Bio.belongsToMany(models.Jobs, {
         through: 'Abouts',
         foreignKey: 'bioId',
-        as: 'jobs',
       })
     }
   }
@@ -30,5 +29,6 @@ module.exports = (sequelize, DataTypes) => {
     sequelize,
     modelName: 'Bio',
   });
+  
   return Bio;
 };
