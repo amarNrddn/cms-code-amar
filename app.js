@@ -13,9 +13,11 @@ app.use(express.static(path.join(__dirname, 'public')));
 app.use(cors())
 
 const routeMyJobs = require('./app/api/my_jobs.js/route')
+const routeBlog = require('./app/api/blog/route')
 
 const v1 = '/code-amar/v1'
 
 app.use(`${v1}/`, routeMyJobs)
+app.use(`${v1}/`, routeBlog)
 
 module.exports = app

@@ -5,6 +5,7 @@ const create = async (req, res, next) => {
       const result = await createMyJobs(req)
 
       res.status(201).json({
+         statusCode: 201,
          message: 'Succes',
          data: result
       })
@@ -18,6 +19,7 @@ const getAll = async (req, res, next) => {
       const result = await getAllMyJobs()
 
       res.status(200).json({
+         statusCode: 200,
          message: 'Succes',
          data: result
       })
