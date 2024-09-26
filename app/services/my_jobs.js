@@ -105,7 +105,7 @@ const destroyByOne = async (req, res, next) => {
 
       return result
    } catch (error) {
-      next(error)
+      next(error)  
    }
 }
 

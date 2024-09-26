@@ -24,7 +24,20 @@ const getAllBlogs = async (req, res, next) => {
    }
 }
 
+const getOneBlog = async (req, res, next) => {
+   try {
+      const { id } = req.params
+
+      const blog = await Blog.findOne({ where: { id: id } })
+
+      return blog
+   } catch (error) {
+      next(error)
+   }
+}
+
 module.exports = {
    createBlog,
-   getAllBlogs
+   getAllBlogs,
+   getOneBlog
 }
