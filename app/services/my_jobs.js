@@ -37,13 +37,12 @@ const createMyJobs = async (req, res, next) => {
 const getAllMyJobs = async (req, res, next) => {
    try {
       const result = await Bio.findAll({
+         attributes: ['id', 'about', 'city'], 
          include: [
             {
                model: Jobs,
-               attributes: {
-                  exclude: ['Abouts'],
-                  include: ['id', 'job']
-               }
+               through: { attributes: [] },
+               attributes: ['id', 'job'] 
             },
          ],
       });
@@ -105,7 +104,7 @@ const destroyByOne = async (req, res, next) => {
 
       return result
    } catch (error) {
-      next(error)  
+      next(error)
    }
 }
 
