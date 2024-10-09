@@ -2,6 +2,8 @@
 const {
   Model
 } = require('sequelize');
+const slugify = require('slugify')
+
 module.exports = (sequelize, DataTypes) => {
   class Blog extends Model {
     /**
@@ -22,10 +24,19 @@ module.exports = (sequelize, DataTypes) => {
     title: DataTypes.STRING,
     thumbnail: DataTypes.STRING,
     content: DataTypes.TEXT,
-    code_snippet: DataTypes.TEXT
+    code_snippet: DataTypes.TEXT,
+    slug: {
+      type: DataTypes.STRING,
+      allowNull: false,
+      unique: true,
+    },
   }, {
     sequelize,
     modelName: 'Blog',
+  });
+
+  Blog.beforeCreate((blog, options) => {
+    blog.slug = `${slugify(blog.title, { lower: true, strict: true })}-${blog.id}`;
   });
   return Blog;
 };

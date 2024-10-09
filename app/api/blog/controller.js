@@ -4,7 +4,7 @@ const create = async (req, res, next) => {
    try {
       const result = await createBlog(req)
 
-      res.status(201).json({
+      res.status(200).json({
          statusCode: 201,
          message: 'Succes',
          data: result

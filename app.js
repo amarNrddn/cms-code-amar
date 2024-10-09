@@ -4,7 +4,9 @@ const cors = require("cors")
 const path = require('path')
 const app = express()
 const logger = require('morgan');
+const compresson = require('compression')
 
+app.use(compresson())
 app.use(logger('dev'));
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));

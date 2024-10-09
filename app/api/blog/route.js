@@ -6,6 +6,6 @@ const upload = require('../../middlewares/uploadImages')
 
 route.post('/blog', upload.single('thumbnail'), create)
 route.get('/blog', getAll)
-route.get('/blog/:id', getOne)
+route.get('/blog/:slug', getOne)
 
 module.exports = route
