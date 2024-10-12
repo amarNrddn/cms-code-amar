@@ -18,6 +18,14 @@ const getAll = async (req, res, next) => {
    try {
       const result = await getAllBlogs()
 
+      if (result.length === 0) {
+         return res.status(200).json({
+            statusCode: 200,
+            message: 'No blogs found',
+            data: []
+         });
+      }
+
       res.status(200).json({
          statusCode: 200,
          message: 'Succes',

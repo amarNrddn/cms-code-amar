@@ -4,10 +4,10 @@ module.exports = {
   async up(queryInterface, Sequelize) {
     await queryInterface.createTable('Blogs', {
       id: {
-        type: Sequelize.UUID,
-        defaultValue: Sequelize.UUIDV4,
         allowNull: false,
-        primaryKey: true
+        autoIncrement: true,
+        primaryKey: true,
+        type: Sequelize.INTEGER
       },
       title: {
         type: Sequelize.STRING
@@ -15,11 +15,32 @@ module.exports = {
       thumbnail: {
         type: Sequelize.STRING
       },
+      introduction: {
+        type: Sequelize.TEXT
+      },
+      titleconten: {
+        type: Sequelize.STRING
+      },
       content: {
+        type: Sequelize.TEXT
+      },
+      solution: {
+        type: Sequelize.TEXT
+      },
+      instalation: {
         type: Sequelize.TEXT
       },
       code_snippet: {
         type: Sequelize.TEXT
+      },
+      elucidation: {
+        type: Sequelize.TEXT
+      },
+      tags: {
+        type: Sequelize.JSON
+      },
+      slug: {
+        type: Sequelize.STRING
       },
       createdAt: {
         allowNull: false,

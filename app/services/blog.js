@@ -2,10 +2,32 @@ const { Blog } = require('../db/models')
 
 const createBlog = async (req, res, next) => {
    try {
-      const { title, content, code_snippet, slug } = req.body
+      const {
+         title,
+         titleconten,
+         content,
+         introduction,
+         code_snippet,
+         solution,
+         instalation,
+         elucidation,
+         tags,
+         slug } = req.body
       const thumbnail = req.file ? `/upload/thumbnails/${req.file.filename}` : null;
 
-      const blog = await Blog.create({ title, content, thumbnail, code_snippet, slug })
+      const blog = await Blog.create({
+         title,
+         titleconten,
+         content,
+         introduction,
+         thumbnail,
+         solution,
+         instalation,
+         code_snippet,
+         elucidation,
+         tags,
+         slug
+      })
 
       return blog
 
@@ -17,7 +39,8 @@ const createBlog = async (req, res, next) => {
 const getAllBlogs = async (req, res, next) => {
    try {
       const blogs = await Blog.findAll({
-         attributes: ['id', 'title', 'thumbnail', 'createdAt', 'slug']
+         attributes: ['id', 'title', 'thumbnail', 'createdAt', 'slug'],
+         order: [['createdAt', 'DESC']]
       })
 
       return blogs
@@ -26,11 +49,27 @@ const getAllBlogs = async (req, res, next) => {
    }
 }
 
+
 const getOneBlog = async (req, res, next) => {
    try {
       const { slug } = req.params
 
-      const blog = await Blog.findOne({ where: { slug: slug } })
+      const blog = await Blog.findOne({
+         where: { slug: slug },
+         attributes: [
+            "title", 
+            "titleconten",
+            "content", 
+            "introduction", 
+            "thumbnail", 
+            "solution", 
+            "instalation", 
+            "code_snippet", 
+            "elucidation", 
+            "tags",
+            "createdAt"
+         ]
+      })
 
       return blog
    } catch (error) {

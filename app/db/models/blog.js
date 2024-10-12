@@ -23,18 +23,19 @@ module.exports = (sequelize, DataTypes) => {
     },
     title: DataTypes.STRING,
     thumbnail: DataTypes.STRING,
+    introduction: DataTypes.TEXT,
+    titleconten: DataTypes.STRING,
     content: DataTypes.TEXT,
+    solution: DataTypes.TEXT,
+    instalation: DataTypes.TEXT,
     code_snippet: DataTypes.TEXT,
-    slug: {
-      type: DataTypes.STRING,
-      allowNull: false,
-      unique: true,
-    },
+    elucidation: DataTypes.TEXT,
+    tags: DataTypes.JSON,
+    slug: DataTypes.STRING
   }, {
     sequelize,
     modelName: 'Blog',
   });
-
   Blog.beforeCreate((blog, options) => {
     blog.slug = `${slugify(blog.title, { lower: true, strict: true })}-${blog.id}`;
   });
