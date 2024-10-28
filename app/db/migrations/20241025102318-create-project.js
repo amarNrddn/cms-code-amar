@@ -2,7 +2,7 @@
 /** @type {import('sequelize-cli').Migration} */
 module.exports = {
   async up(queryInterface, Sequelize) {
-    await queryInterface.createTable('Blogs', {
+    await queryInterface.createTable('Projects', {
       id: {
         type: Sequelize.UUID,
         defaultValue: Sequelize.UUIDV4,
@@ -12,32 +12,26 @@ module.exports = {
       title: {
         type: Sequelize.STRING
       },
+      description: {
+        type: Sequelize.TEXT
+      },
+      linksourcode: {
+        type: Sequelize.STRING
+      },
       thumbnail: {
         type: Sequelize.STRING
       },
       introduction: {
-        type: Sequelize.TEXT
-      },
-      titleconten: {
         type: Sequelize.STRING
       },
-      content: {
+      clone: {
         type: Sequelize.TEXT
       },
-      solution: {
+      install: {
         type: Sequelize.TEXT
       },
-      instalation: {
-        type: Sequelize.TEXT
-      },
-      code_snippet: {
-        type: Sequelize.TEXT
-      },
-      elucidation: {
-        type: Sequelize.TEXT
-      },
-      tags: {
-        type: Sequelize.JSON
+      run: {
+        type: Sequelize.STRING
       },
       slug: {
         type: Sequelize.STRING
@@ -53,6 +47,6 @@ module.exports = {
     });
   },
   async down(queryInterface, Sequelize) {
-    await queryInterface.dropTable('Blogs');
+    await queryInterface.dropTable('Projects');
   }
 };

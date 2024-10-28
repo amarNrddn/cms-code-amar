@@ -11,6 +11,7 @@ const create = async (req, res, next) => {
       })
    } catch (error) {
       next(error)
+      res.status(500).json({ message: "Error creating project", error })
    }
 }
 

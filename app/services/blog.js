@@ -14,6 +14,7 @@ const createBlog = async (req, res, next) => {
          tags,
          slug } = req.body
       const thumbnail = req.file ? `/upload/thumbnails/${req.file.filename}` : null;
+      const parsedTags = JSON.parse(tags)   
 
       const blog = await Blog.create({
          title,
@@ -25,7 +26,7 @@ const createBlog = async (req, res, next) => {
          instalation,
          code_snippet,
          elucidation,
-         tags,
+         tags: parsedTags,
          slug
       })
 
@@ -39,7 +40,7 @@ const createBlog = async (req, res, next) => {
 const getAllBlogs = async (req, res, next) => {
    try {
       const blogs = await Blog.findAll({
-         attributes: ['id', 'title', 'thumbnail', 'createdAt', 'slug'],
+         attributes: ['id', 'title', 'thumbnail', 'createdAt', 'content', 'slug'],
          order: [['createdAt', 'DESC']]
       })
 
