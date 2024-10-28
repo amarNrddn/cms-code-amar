@@ -1,4 +1,4 @@
-const { Project, TechstackFeature, Feature } = require('../db/models')
+const { Project, Techstack, Feature } = require('../db/models')
 
 const createProject = async (req, res, next) => {
    try {
@@ -29,14 +29,21 @@ const createProject = async (req, res, next) => {
 
       return createProject
    } catch (error) {
-      // console.log(error)
+      console.log(error)
    }
 }
 
 const getAllProject = async (req, res, next) => {
    try {
       const result = await Project.findAll({
-         attributes: ['id', 'title', 'description', 'linksourcode', 'thumbnail', 'introduction', 'clone', 'install', 'run', 'slug']
+         attributes: ['id', 'title', 'description', 'linksourcode', 'thumbnail', 'introduction', 'clone', 'install', 'run', 'slug'],
+         include: [
+            {
+               model: Feature,
+               as: 'features',
+               attributes: ['id', 'title', 'description'] 
+            }
+         ],
       })
 
       return result
