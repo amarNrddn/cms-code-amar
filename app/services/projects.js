@@ -13,7 +13,7 @@ const createProject = async (req, res, next) => {
          slug
       } = req.body
 
-      const  thumbnail = req.file ? `/upload/thumbnails/${req.file.filename}` : null;
+      const thumbnail = req.file ? `/upload/thumbnails/${req.file.filename}` : null;
 
       const createProject = await Project.create({
          title,
@@ -39,9 +39,14 @@ const getAllProject = async (req, res, next) => {
          attributes: ['id', 'title', 'description', 'linksourcode', 'thumbnail', 'introduction', 'clone', 'install', 'run', 'slug'],
          include: [
             {
+               model: Techstack,
+               as: 'techstacks',
+               attributes: ['id', 'techstack']
+            },
+            {
                model: Feature,
                as: 'features',
-               attributes: ['id', 'title', 'description'] 
+               attributes: ['id', 'title', 'description']
             }
          ],
       })
@@ -52,7 +57,35 @@ const getAllProject = async (req, res, next) => {
    }
 }
 
+const getOneProject = async (req, res, next) => {
+   try {
+      const { slug } = req.params
+
+      const project = await Project.findOne({
+         where: { slug: slug },
+         attributes: ['id', 'title', 'description', 'linksourcode', 'thumbnail', 'introduction', 'clone', 'install', 'run', 'slug'],
+         include: [
+            {
+               model: Techstack,
+               as: 'techstacks',
+               attributes: ['id', 'techstack']
+            },
+            {
+               model: Feature,
+               as: 'features',
+               attributes: ['id', 'title', 'description']
+            }
+         ],
+      })
+
+      return project
+   } catch (error) {
+      next(error)
+   }
+}
+
 module.exports = {
    createProject,
-   getAllProject
+   getAllProject,
+   getOneProject
 }

@@ -1,4 +1,4 @@
-const { createProject, getAllProject } = require('../../services/projects')
+const { createProject, getAllProject, getOneProject } = require('../../services/projects')
 
 const create = async (req, res, next) => {
    try {
@@ -29,7 +29,22 @@ const getAll = async (req, res, next) => {
    }
 }
 
+const getOne = async (req, res, next) => {
+   try {
+      const result = await getOneProject(req)
+
+      res.status(200).json({
+         statusCode: 200,
+         message: 'Succes',
+         data: result
+      })
+   } catch (error) {
+      console.log(error)
+   }
+}
+
 module.exports = {
    create,
-   getAll
+   getAll,
+   getOne
 }
